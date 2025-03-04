@@ -4,7 +4,7 @@
         "condition": "matches",
         "value": ".*:latest$",
         "category": "Concern",
-        "message": "Using 'latest' tag for container images makes deployments unpredictable and insecure.",
+        "message": "The concept of inmutable infrastructure is broken by using the use of 'latest' tag, where as consumer of the image we cannot ensure the content behnd :latest will remain the same.",
         "reference": "https://kubernetes.io/docs/concepts/containers/images/#updating-images",
         "next_steps": "Use a specific version tag (e.g., 'nginx:1.24.0') to ensure stability and security."
     },    
@@ -16,7 +16,7 @@
         "nested_condition": "not_matches",
         "nested_value": "^(https://|arn:aws:|projects/|vault:|secrets://|gcp:|azure:|aws:|k8s:|config://)",
         "category": "MAJOR",
-        "message": "Hardcoded SECRET_KEY detected instead of a secure reference.",
+        "message": "Using hardcoded secrets or sensible information is a MAJOR security flaw.",
         "reference": "https://dev.to/argonaut/top-cloud-secret-management-tools-and-how-to-choose-the-right-one-2785",
         "next_steps": "Store secrets securely in a vault or environment variables instead of hardcoding them."
     },
@@ -28,7 +28,7 @@
         "nested_condition": "matches",
         "nested_value": "^http://",
         "category": "MAJOR",
-        "message": "Publicly exposed URL is using HTTP instead of HTTPS.",
+        "message": "Public exposed URL is using HTTP instead of HTTPS.",
         "reference": "https://www.cloudflare.com/learning/security/what-is-ssl/",
         "next_steps": "Use HTTPS to secure the connection and avoid data interception."
     },
@@ -37,7 +37,7 @@
         "condition": "equals",
         "value": 0,
         "category": "MAJOR",
-        "message": "running the container as root, goes against security best practices.",
+        "message": "Running the container as root, goes against security best practices, as it could lead to privilege escalation.",
         "reference": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/#users-and-groups",
         "next_steps": "Use a non-root user to run the container."
     },
@@ -46,7 +46,7 @@
         "condition": "equals",
         "value": true,
         "category": "MAJOR",
-        "message": "The container is running in privileged mode.",
+        "message": "The container is running in privileged mode, which could lead to privilege escalation.",
         "reference": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/#privileged",
         "next_steps": "Avoid running containers in privileged mode."
     },
@@ -93,7 +93,7 @@
         "category": "Headsup",
         "message": "Deletion protection is disabled.",
         "reference": "https://cloud.google.com/compute/docs/instances/preventing-accidental-vm-deletion",
-        "next_steps": "In case a VM is critical, enable deletion protection to prevent accidental deletion."
+        "next_steps": "Consider, enable deletion protection to prevent accidental deletion of the VM."
     },
     {
         "field": ".*enable_integrity_monitoring.*",

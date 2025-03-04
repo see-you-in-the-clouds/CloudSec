@@ -1,6 +1,7 @@
 import json
 import re
 
+# Load security rules from JSON file
 def load_rules():
     """Load security rules from JSON file."""
     try:
@@ -8,7 +9,7 @@ def load_rules():
             return json.load(file)
     except (FileNotFoundError, json.JSONDecodeError):
         return []
-
+# "Lineup" the rules and the user JSON
 def validate_json(json_data):
     """Check JSON against security rules and return violations."""
     violations = []
@@ -34,19 +35,12 @@ def search_json(data, rules, violations, path):
                             violations.append(build_violation(field_path + "." + rule["nested_field"], rule, nested_value))
 
             search_json(value, rules, violations, new_path)
-
+# Comparision elements logic to compare the rules and the user JSON
     elif isinstance(data, list):  
         for i, item in enumerate(data):
             search_json(item, rules, violations, path + [str(i)])
 
-    elif isinstance(data, list):  
-        for i, item in enumerate(data):
-            search_json(item, rules, violations, path + [str(i)])
-
-    elif isinstance(data, list):  
-        for i, item in enumerate(data):
-            search_json(item, rules, violations, path + [str(i)])
-
+# gathering values to append
 def build_violation(field_path, rule, value):
     """Create a violation entry with strict path enforcement."""
     return {
@@ -57,7 +51,7 @@ def build_violation(field_path, rule, value):
         "reference": rule["reference"],
         "next_steps": rule["next_steps"]
     }
-
+# operator logic to compare the rules and the user JSON
 def rule_applies(value, rule):
     """Check if a rule applies to a given value."""
     if rule["condition"] == "equals":
