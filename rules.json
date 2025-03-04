@@ -1,0 +1,125 @@
+[
+    {
+        "field": ".*image.*",
+        "condition": "matches",
+        "value": ".*:latest$",
+        "category": "Concern",
+        "message": "Using 'latest' tag for container images makes deployments unpredictable and insecure.",
+        "reference": "https://kubernetes.io/docs/concepts/containers/images/#updating-images",
+        "next_steps": "Use a specific version tag (e.g., 'nginx:1.24.0') to ensure stability and security."
+    },    
+    {
+        "field": ".*name",
+        "condition": "equals",
+        "value": "SECRET_KEY",
+        "nested_field": "value",
+        "nested_condition": "not_matches",
+        "nested_value": "^(https://|arn:aws:|projects/|vault:|secrets://|gcp:|azure:|aws:|k8s:|config://)",
+        "category": "MAJOR",
+        "message": "Hardcoded SECRET_KEY detected instead of a secure reference.",
+        "reference": "https://dev.to/argonaut/top-cloud-secret-management-tools-and-how-to-choose-the-right-one-2785",
+        "next_steps": "Store secrets securely in a vault or environment variables instead of hardcoding them."
+    },
+    {
+        "field": ".*name",
+        "condition": "matches",
+        "value": "^PUBLIC_.*",
+        "nested_field": "value",
+        "nested_condition": "matches",
+        "nested_value": "^http://",
+        "category": "MAJOR",
+        "message": "Publicly exposed URL is using HTTP instead of HTTPS.",
+        "reference": "https://www.cloudflare.com/learning/security/what-is-ssl/",
+        "next_steps": "Use HTTPS to secure the connection and avoid data interception."
+    },
+    {
+        "field": ".*runAsUser.*",
+        "condition": "equals",
+        "value": 0,
+        "category": "MAJOR",
+        "message": "running the container as root, goes against security best practices.",
+        "reference": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/#users-and-groups",
+        "next_steps": "Use a non-root user to run the container."
+    },
+    {
+        "field": ".*privileged.*",
+        "condition": "equals",
+        "value": true,
+        "category": "MAJOR",
+        "message": "The container is running in privileged mode.",
+        "reference": "https://kubernetes.io/docs/concepts/policy/pod-security-policy/#privileged",
+        "next_steps": "Avoid running containers in privileged mode."
+    },
+    {
+        "field": ".*open_ports.*",
+        "condition": "contains",
+        "value": 22,
+        "category": "Concern",
+        "message": "The VM is exposing the port 22 to the internet.",
+        "reference": "https://tailscale.com/learn/ssh-security-best-practices-protecting-your-remote-access-infrastructure#securing-your-ssh-settings",
+        "next_steps": "Exposing the default SSH port is a security risk as it is a common target for attackers."
+    },
+    {
+      "field": ".*password.*",
+      "condition": "matches",
+      "value": "^(?!\\s*$).+",
+      "category": "MAJOR",
+      "message": "Hardcoded passwords are a security risk.",
+      "reference": "https://www.csoonline.com/article/3603573/what-is-a-password-attack-how-cybercriminals-hack-passwords.html",
+      "next_steps": "Use environment variables or a secret manager instead of hardcoding passwords."
+    },
+    {
+        "field": ".*encryption.*",
+        "condition": "equals",
+        "value": false,
+        "message": "The VM is not encrypted.",
+        "category": "MAJOR",
+        "reference": "https://learn.microsoft.com/en-us/azure/security/fundamentals/encryption-overview",
+        "next_steps": "Encrypt the VM to protect the data."
+    },
+    {
+        "field": ".*replication.*",
+        "condition": "matches",
+        "value": "^(LRS|GRS)$",
+        "category": "Headsup",
+        "message": "Replication type may impact data compliance requirements.",
+        "reference": "https://learn.microsoft.com/en-us/industry/sovereignty/data-residency",
+        "next_steps": "Ensure that LRS meets availability needs and GRS complies with data residency laws before use."
+    },
+    {
+        "field": ".*delete_protection.*",
+        "condition": "equals",
+        "value": false,
+        "category": "Headsup",
+        "message": "Deletion protection is disabled.",
+        "reference": "https://cloud.google.com/compute/docs/instances/preventing-accidental-vm-deletion",
+        "next_steps": "In case a VM is critical, enable deletion protection to prevent accidental deletion."
+    },
+    {
+        "field": ".*enable_integrity_monitoring.*",
+        "condition": "equals",
+        "value": false,
+        "category": "Headsup",
+        "message": "Consider enable integrity monitoring.",
+        "reference": "https://cloud.google.com/compute/shielded-vm/docs/shielded-vm#integrity-monitoring",
+        "next_steps": "In case a VM is critical, enable deletion protection to prevent accidental deletion."
+    },
+    {
+        "field": ".*enable_secure_boot.*",
+        "condition": "equals",
+        "value": false,
+        "category": "Headsup",
+        "message": "Consider enable Secure Boot.",
+        "reference": "https://cloud.google.com/compute/shielded-vm/docs/shielded-vm#secure-boot",
+        "next_steps": "In case a VM is critical, enable deletion protection to prevent accidental deletion."
+    },
+    {
+        "field": ".*enable_vtpm.*",
+        "condition": "equals",
+        "value": false,
+        "category": "Headsup",
+        "message": "Consider enable virtual Trusted Platform Module.",
+        "reference": "https://cloud.google.com/compute/shielded-vm/docs/shielded-vm#vtpm",
+        "next_steps": "In case a VM is critical, enable deletion protection to prevent accidental deletion."
+    }
+]

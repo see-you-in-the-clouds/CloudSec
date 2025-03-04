@@ -1,0 +1,40 @@
+{
+  "type": "virtual_machine",
+  "name": "forthehorde",
+  "zone": "europe-west2-b",
+  "cpu_platform": "Intel Broadwell",
+  "can_ip_forward": true,
+  "deletion_protection": false,
+  "encryption": false,
+
+  "network_interfaces": {
+    "name": "nic0",
+    "public_ip": "34.147.129.232",
+    "private_ip": "10.154.0.2",
+    "network": "default"
+  },
+
+  "metadata": {
+    "enable-osconfig": "TRUE"
+  },
+
+  "security_config": {
+    "enable_integrity_monitoring": false,
+    "enable_secure_boot": false,
+    "enable_vtpm": false
+  },
+
+  "service_accounts": {
+    "email": "391512156109-compute@developer.gserviceaccount.com",
+    "scopes": "https://www.googleapis.com/auth/cloud-platform"
+  },
+
+  "disks": {
+    "device_name": "forthehorde",
+    "disk_size_gb": "10",
+    "boot": true,
+    "auto_delete": true,
+    "encryption": false,
+    "source": "https://www.googleapis.com/compute/v1/projects/ferry-climent/zones/europe-west2-b/disks/forthehorde"
+  }
+}
