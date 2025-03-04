@@ -57,7 +57,7 @@
         "category": "Concern",
         "message": "The VM is exposing the port 22 to the internet.",
         "reference": "https://tailscale.com/learn/ssh-security-best-practices-protecting-your-remote-access-infrastructure#securing-your-ssh-settings",
-        "next_steps": "Exposing the default SSH port is a security risk as it is a common target for attackers."
+        "next_steps": "Exposing the default SSH port is a security risk as it is a common target for attackers, consider running SSH on a different port."
     },
     {
       "field": ".*password.*",
@@ -66,7 +66,7 @@
       "category": "MAJOR",
       "message": "Hardcoded passwords are a security risk.",
       "reference": "https://www.csoonline.com/article/3603573/what-is-a-password-attack-how-cybercriminals-hack-passwords.html",
-      "next_steps": "Use environment variables or a secret manager instead of hardcoding passwords."
+      "next_steps": "Rely on IAM to grant access to the resources and if necessary use secrets management tools."
     },
     {
         "field": ".*encryption.*",
@@ -75,7 +75,7 @@
         "message": "The VM is not encrypted.",
         "category": "MAJOR",
         "reference": "https://learn.microsoft.com/en-us/azure/security/fundamentals/encryption-overview",
-        "next_steps": "Encrypt the VM to protect the data."
+        "next_steps": "Encrypt the VM to protect the data, this could lead to a data breach, or compliance issues."
     },
     {
         "field": ".*replication.*",
@@ -99,10 +99,10 @@
         "field": ".*enable_integrity_monitoring.*",
         "condition": "equals",
         "value": false,
-        "category": "Headsup",
+        "category": "Concern",
         "message": "Consider enable integrity monitoring.",
         "reference": "https://cloud.google.com/compute/shielded-vm/docs/shielded-vm#integrity-monitoring",
-        "next_steps": "In case a VM is critical, enable deletion protection to prevent accidental deletion."
+        "next_steps": "Integrity monitoring compares the most recent boot measurements to the integrity policy baseline and returns a pair of pass/fail results depending on whether they match or not, one for the early boot sequence and one for the late boot sequence."
     },
     {
         "field": ".*enable_secure_boot.*",
@@ -111,15 +111,15 @@
         "category": "Headsup",
         "message": "Consider enable Secure Boot.",
         "reference": "https://cloud.google.com/compute/shielded-vm/docs/shielded-vm#secure-boot",
-        "next_steps": "In case a VM is critical, enable deletion protection to prevent accidental deletion."
+        "next_steps": "Secure Boot helps ensure that the system only runs authentic software by verifying the digital signature of all boot components, and halting the boot process if signature verification fails."
     },
     {
         "field": ".*enable_vtpm.*",
         "condition": "equals",
         "value": false,
-        "category": "Headsup",
+        "category": "Concern",
         "message": "Consider enable virtual Trusted Platform Module.",
         "reference": "https://cloud.google.com/compute/shielded-vm/docs/shielded-vm#vtpm",
-        "next_steps": "In case a VM is critical, enable deletion protection to prevent accidental deletion."
+        "next_steps": "A vTPM is a virtualized trusted platform module, which is a specialized computer chip you can use to protect objects, like keys and certificates, that you use to authenticate access to your system."
     }
 ]

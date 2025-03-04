@@ -26,6 +26,6 @@ def generate_report(json_filename, violations):
                 report.write(f"   Path: -> {full_json_path}\n")  
                 report.write(f"   Value: -> {problem_value}\n")
                 report.write(f"   Reference: -> {reference}\n")   
-                report.write(f"   Next Steps: -> {next_steps}\n")
+                report.write(f"   Next Steps: -> {next_steps}\n\n")
 
     return report_path

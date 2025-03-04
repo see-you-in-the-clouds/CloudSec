@@ -33,7 +33,3 @@ The problem statement directly refers to build something aiming for solution and
 #### Functionality
 Thinking about similar solutions to better understand "how others have implemented similar ideas" the first thing that comes to mind is [GCPDiag](https://gcpdiag.dev/).
 
-#### Architecture
-- App Engine Flex
-- Google Cloud Storage
-- Terraform
