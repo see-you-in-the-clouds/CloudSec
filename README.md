@@ -50,5 +50,8 @@ At the same time the Issue Statement requires to upload the Code in GitHub, Clou
 #### Functionality
 Thinking about similar solutions to better understand "how others have implemented similar ideas" the first thing that comes to mind is [GCPDiag](https://gcpdiag.dev/), where the idea is based on.
 
+## How to set it up
 
-##
+### Fork
+For the reprository ![fork](/readme/1.png)
+###
