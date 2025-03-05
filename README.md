@@ -1,14 +1,13 @@
 ## Senior Gaming Cloud Engineer Pre-Screen Code Assessment
-
 ### Problem Statement
+
 You are tasked with developing a web application that helps users identify and mitigate potential security vulnerabilities in their cloud infrastructure. The application should allow users to upload a configuration file (in JSON format) that describes their cloud resources and security settings. The application will then analyze the configuration and provide a report highlighting any security issues and recommendations for improvement.
 
 Select a GCP centric technology stack to complete this assessment. Please document any assumptions and necessary configurations around this web application clearly. During project submission, provide a link to the GitHub repository where your code is located. It is recommended not to spend more than 1 day on this assessment.
 Solution towards innovation and simplicity and prepare to present your understanding of cloud security principles, along with a thorough comprehension of your web application, clean coding practices, and clarity of documentation.
-
 #### Requirements
 - **Technology Stack**: Using GCP free tier, and one of these services, GCP Compute Engine, Google Kubernetes Engine, App Engine, Cloud Run, or Google Cloud Deployment Manager. Deploy an app that scans JSON configuration files and identifies security issues within that configuration file.
-
+- 
 - **File Upload**: The web app should have a feature that allows users to upload a JSON file containing their cloud configuration.
 
 - **Configuration Analysis**: The application should parse the JSON file and analyze the configuration for common security issues.
@@ -38,7 +37,7 @@ This could potentially be expanded to a bigger functionality.
   1. Storing the JSON and report could eventually grow an internal knowledge to add/improve detection rules
      1. I would consider a GCS as Cloud Run Volume for this Step (Which could eventually also handle PII concerns with DLP)
   2. Gather volumetric data of common issues Cloud operators / Dev recurrently fall into, to later educate Devs / Cloud Operators or decide if its worth to apply actions at bigger scale (Organizational Policies)
-     1. In this case I would consider a Cloud SQL In case refactoring the code to keep track of the volumetric data.
+     2. In this case I would consider a Cloud SQL In case refactoring the code to keep track of the volumetric data.
    
 ### Concept
 
@@ -52,29 +51,36 @@ Thinking about similar solutions to better understand "how others have implement
 
 ## How to set it up
 
-### Fork
+### Fork the repository
+
+Visit - https://github.com/see-you-in-the-clouds/CloudSec
+
+Fork the repository into your own profile.
 ![fork](/readme/1.png)
-For the reprository - https://github.com/see-you-in-the-clouds/CloudSec
+
+The expected output should look like an exact copy of this.
+
 ![Repo](/readme/2.png)
 
 ### Move to GCP - Cloud Run
-1. Enable required API if not done yet (Cloud Build, Cloud Run)
-2. Deploy Container > Service
+
+1. Log into your GCP Platform
+2. Enable required API if not done yet (Cloud Build, Cloud Run)
+3. Deploy Container > Service
    ![Run](/readme/3.png)
-3. Deploy the service from GitHub
+   
+4. Deploy the service from GitHub
 5. Configure the source of this Cloud Run as the forked repository set up earlier.
    ![GitHub](/readme/4.png)
    ![Forked](/readme/5.png)
 6. Configure the DockerFile as the Kickstart of the building and the Service to be Run in the Build Type.
-   ![DockerFile](/readme/6.png)
+   ![DockerFile|672](/readme/6.png)
 
-## Config
+## Configuration
+
 The default configuration is valid at exception of IAM. Unless set up for an internal audience, in this particular case we will set up unathenticated invocations
+
   ![IAM](/readme/7.png)
 
-## App
-
-The config is ready, Clicking Save would deploy the Service, In my case at https://cloudsec-391512156109.europe-southwest1.run.app/
-
-  
-
+The Application is ready to be deployed, clicking DEPLOY should give you the URL of the app in my case.
+### https://cloudsec-391512156109.europe-southwest1.run.app/
