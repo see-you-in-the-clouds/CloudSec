@@ -53,5 +53,28 @@ Thinking about similar solutions to better understand "how others have implement
 ## How to set it up
 
 ### Fork
-For the reprository ![fork](/readme/1.png)
-###
+![fork](/readme/1.png)
+For the reprository - https://github.com/see-you-in-the-clouds/CloudSec
+![Repo](/readme/2.png)
+
+### Move to GCP - Cloud Run
+1. Enable required API if not done yet (Cloud Build, Cloud Run)
+2. Deploy Container > Service
+   ![Run](/readme/3.png)
+3. Deploy the service from GitHub
+5. Configure the source of this Cloud Run as the forked repository set up earlier.
+   ![GitHub](/readme/4.png)
+   ![Forked](/readme/5.png)
+6. Configure the DockerFile as the Kickstart of the building and the Service to be Run in the Build Type.
+   ![DockerFile](/readme/6.png)
+
+## Config
+The default configuration is valid at exception of IAM. Unless set up for an internal audience, in this particular case we will set up unathenticated invocations
+  ![IAM](/readme/7.png)
+
+## App
+
+The config is ready, Clicking Save would deploy the Service, In my case at https://cloudsec-391512156109.europe-southwest1.run.app/
+
+  
+
