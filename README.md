@@ -67,6 +67,7 @@ The expected output should look like an exact copy of this.
 1. Log into your GCP Platform
 2. Enable required API if not done yet (Cloud Build, Cloud Run)
 3. Deploy Container > Service
+
    ![Run](/readme/3.png)
    
 4. Deploy the service from GitHub
