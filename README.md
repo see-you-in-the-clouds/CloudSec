@@ -36,9 +36,9 @@ A better implementation would be to pipe and API call over a Infrastructure reso
 
 This could potentially be expanded to a bigger functionality.
   1. Storing the JSON and report could eventually grow an internal knowledge to add/improve detection rules
-     a. I would consider a GCS as Cloud Run Volume for this Step (Which could eventually also handle PII concerns with DLP)
+     1. I would consider a GCS as Cloud Run Volume for this Step (Which could eventually also handle PII concerns with DLP)
   2. Gather volumetric data of common issues Cloud operators / Dev recurrently fall into, to later educate Devs / Cloud Operators or decide if its worth to apply actions at bigger scale (Organizational Policies)
-     a. In this case I would consider a Cloud SQL In case refactoring the code to keep track of the volumetric data.
+     1. In this case I would consider a Cloud SQL In case refactoring the code to keep track of the volumetric data.
    
 ### Concept
 
